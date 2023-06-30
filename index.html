@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Быстро ли работает сайт у пользователей?</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/yandex2/styles/screen-16x9.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+    </style>
+</head>
+<body class="shower list">
+    <header class="caption">
+        <h1>Быстро ли работает сайт у пользователей?</h1>
+    </header>
+
+    <!--<section class="slide cover">
+        <div>
+            <h2><img src="img/logo2.svg" alt="" class="logo"></h2>
+        </div>
+    </section>
+
+    <section class="slide title">
+        <div>
+            <h2>Быстро ли работает сайт у пользователей?</h2>
+
+            <h3><img src="img/logo2.svg" alt=""></h3>
+
+            <div class="authors">
+                <p>Александр Нефедов</p>
+            </div>
+        </div>
+    </section>-->
+    <section class="slide fullscreen">
+        <div>
+            <p><img src="img/title-perf.png" alt="" width="100%"></p>
+        </div>
+    </section>
+
+    <section class="slide clear">
+        <div>
+            <h2>Посчитаем производительность</h2>
+
+            <ul>
+                <li>Лабораторно (in the lab)</li>
+                <li class="next">У живых пользователей (in the field)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide clear">
+        <div>
+            <h2>Лабораторно</h2>
+
+            <p>Lighthouse, WebPageTest, ...</p>
+
+            <div class="next">
+                <p>Плюсы:</p>
+                <ul>
+                    <li>Получаем данные сразу</li>
+                    <li>Точно понимаем что произошло и как</li>
+                    <li>Можем глубоко отлаживать</li>
+                </ul>
+            </div>
+
+            <div class="next">
+                <p>Минусы:</p>
+                <ul>
+                    <li>Большой разброс чисел</li>
+                    <li>Скупость вариантов условий</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide clear">
+        <div>
+            <h2>У живых пользователей</h2>
+
+            <div class="next">
+                <p>Плюсы:</p>
+                <ul>
+                    <li>Гораздо лучше представляем, что происходит у реальных пользователей</li>
+                    <li>Имеем большой объём данных</li>
+                    <li>Можем смотреть в реалтайме*</li>
+                </ul>
+            </div>
+
+            <div class="next">
+                <p>Минусы:</p>
+                <ul>
+                    <li>Передача данных</li>
+                    <li>Невоспроизводимость кейсов</li>
+                    <li>Ограниченные инструменты</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide clear">
+        <div>
+            <h2>RUM - Real User Monitoring</h2>
+
+            <ul>
+                <li class="next">Множество устройств</li>
+                <li class="next">Множество браузеров</li>
+                <li class="next">Множество сетевых условий</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide clear">
+        <div>
+            <h2>Как собрать метрики скорости с пользователей?</h2>
+
+            <ul>
+                <li>Яндекс.Метрика, Google Search Console</li>
+                <li class="next">Chrome User Experience Report</li>
+                <li class="next">Готовые решения</li>
+                <li class="next">Своё решение</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide fullscreen">
+        <div>
+            <p><img src="img/mc.png" alt="" width="100%"></p>
+
+            <figure>
+                <p>Яндекс.Метрика</p>
+            </figure>
+        </div>
+    </section>
+
+    <section class="slide fullscreen">
+        <div>
+            <p><img src="img/crux.png" alt="" width="100%"></p>
+
+            <figure>
+                <p>Page Speed Insights</p>
+            </figure>
+        </div>
+    </section>
+
+    <section class="slide section">
+        <div>
+            <h2>Понимаем сами,<br> быстр ли сайт</h2>
+        </div>
+    </section>
+
+    <section class="slide clear">
+        <div>
+            <h2>Общая картинка</h2>
+
+            <ol>
+                <li class="next">Собираем данные на клиенте</li>
+                <li class="next">Отправляем на сервер</li>
+                <li class="next">Считаем метрики, строим графики</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="slide section">
+        <div>
+            <h2>Какие возможности<br> у нас есть?</h2>
+        </div>
+    </section>
+
+    <section class="slide fullscreen">
+        <div>
+            <p><img src="img/timestamp-diagram.svg" alt="" width="100%"></p>
+
+            <figure>
+                <p>Navigation Timing</p>
+            </figure>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Navigation Timing API</h2>
+
+            <div>DEPRECATED</div>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+// Весь объект с данными
+const <mark>timing</mark> = performance.timing;
+// Время до первого байта
+const timeToFirstByte = <mark>timing</mark>.responseStart - <mark>timing</mark>.requestStart;
+// Общее время загрузки
+const loadTime = <mark>timing</mark>.loadEventStart - <mark>timing</mark>.requestStart;
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Navigation Timing Level 2</h2>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+function onLoad() {
+    const timing = <mark>performance.getEntriesByType</mark>('navigation')[0];
+    const nextHopProtocol = timing.nextHopProtocol;
+    // ...
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Navigation Timing Level 2</h2>
+
+            <style>
+                .slide ul.timing-list {
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-left: -90px;
+                    padding-left: 0;
+                }
+
+                .slide .timing-list li {
+                    text-indent: 0 !important;
+                }
+
+                .slide .timing-list li:before {
+                    visibility: hidden;
+                }
+            </style>
+
+            <ul class="timing-list">
+                <li>connect</li>
+                <li>bodySize</li>
+                <li>domComplete</li>
+                <li>domContentLoaded</li>
+                <li>domInteractive</li>
+                <li>domainLookup</li>
+                <li>type</li>
+                <li>load</li>
+                <li>protocol</li>
+                <li>redirectCount</li>
+                <li>redirectDuration</li>
+                <li>request</li>
+                <li>response</li>
+                <li>secureConnection</li>
+                <li>serverTiming</li>
+                <li>transferSize</li>
+                <li>unload</li>
+                <li>workerStart</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Paint Timing API</h2>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+const entries = performance.getEntriesByType('<mark>paint</mark>');
+console.log(entries);
+
+// first-paint: Chromium
+// first-contentful-paint: Chromium, Firefox, Safari
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Paint Timing API: first-contentful-paint</h2>
+
+            <p>Разница между реальным отображением на экране и метриками</p>
+            <p>Chromium: ~ -5ms</p>
+            <p>Firefox: ~ -30ms</p>
+            <p>Safari: ~ -180ms</p>
+        </div>
+    </section>
+
+    <section class="slide fullscreen">
+        <div>
+            <p><img src="img/fcp.png" alt="" width="100%"></p>
+
+            <h3 style="left: 30px; bottom: 30px;">https://blog.webpagetest.org/posts/why-first-contentful-paint-doesnt-work-as-a-cross-browser-metric/</h3>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>First Input</h2>
+
+            <p>Chromium & Firefox</p>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+// Задержка отклика на первое действие пользователя
+const entry = performance.getEntriesByType('<mark>first-input</mark>')[0];
+if (entry) {
+    const inputDelay = entry.processingStart - entry.startTime;
+}
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>First Input</h2>
+
+            <p>Chromium & Firefox</p>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+// Задержка отклика на первое действие пользователя
+const observer = <mark>new PerformanceObserver</mark>(list => {
+    const entry = list.getEntries()[0];
+    if (entry) {
+        const inputDelay = entry.processingStart - entry.startTime;
+    }
+});
+<mark>observer.observe</mark>({ type: 'first-input', buffered: true });
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>First Input</h2>
+
+            <p>Chromium & Firefox</p>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+// Задержка отклика на первое действие пользователя
+const observer = new PerformanceObserver(list => {
+    const entry = list.getEntries()[0];
+    if (entry) {
+        const inputDelay = entry.processingStart - entry.startTime;
+        <mark>observer.disconnect();</mark>
+    }
+});
+observer.observe({ type: 'first-input', buffered: true });
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>First Input</h2>
+
+            <p>Chromium & Firefox</p>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+// Задержка отклика на первое действие пользователя
+const observer = new PerformanceObserver(list => {
+    const entry = list.getEntries()[0];
+    if (entry) {
+        const inputDelay = entry.processingStart - entry.startTime;
+        observer.disconnect();
+    }
+});
+observer.observe({ type: 'first-input', <mark>buffered: true</mark> });
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Long tasks</h2>
+
+            <p>Chromium</p>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+// Загруженность основного потока
+let sum = 0;
+const observer = new PerformanceObserver(list => {
+    list.getEntries().forEach(entry => {
+        sum += entry.duration;
+    });
+    console.log('sum', sum);
+});
+observer.observe({ type: 'longtask', buffered: true });
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide fullscreen">
+        <div style="text-align: center">
+            <video muted="" autoplay="" loop="" src="img/cls.webm"></video>
+
+            <figure>
+                <p>https://web.dev/cls/</p>
+            </figure>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Cumulative Layout Shift</h2>
+
+            <p>Chromium</p>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+// Сдвиги контента на странице
+let sum = 0;
+const observer = new PerformanceObserver(list => {
+    list.getEntries().forEach(entry => {
+        sum += entry.value;
+    });
+    console.log('sum', sum);
+});
+observer.observe({ type: 'layout-shift', buffered: true });
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Другие инструменты</h2>
+
+            <ul>
+                <li>Resource Timing API</li>
+                <li>Element Timing API</li>
+                <li>Intersection Observer</li>
+                <li>requestAnimationFrame</li>
+                <li>...</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Замеры времени</h2>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+const start = performance.now();
+// ...
+const elapsedTime = performance.now() - start;
+fetch(url).then(() => {
+    const totalTime = performance.now() - start;
+});
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Специфические метрики сервиса</h2>
+
+            <ul>
+                <li>Первый кадр плеера</li>
+                <li>Скорость открытия письма из списка</li>
+                <li>Загрузка тумбы в поисковой выдаче</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Core Web Vitals</h2>
+
+            <p>Способ оценки производительности и удобства сайта</p>
+
+            <ul>
+                <li>LCP: Largest Contentful Paint</li>
+                <li>FID: First Input Delay</li>
+                <li>CLS: Cumulative Layout Shift</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Core Web Vitals</h2>
+
+            <p>Дополнительные метрики</p>
+
+            <ul>
+                <li>TTFB: Time To First Byte</li>
+                <li>FCP: First Contentful Paint</li>
+                <li>TBT: Total Blocking Time</li>
+                <li>TTI: Time To Interactive</li>
+                <li>INP: Interaction to Next Paint</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Core Web Vitals</h2>
+
+            <div class="language-js highlighter-rouge">
+                <pre class="highlight">
+                    <code>
+npm install web-vitals
+
+// ...
+
+import {getLCP, getFID, getCLS} from 'web-vitals';
+
+getCLS(console.log);
+getFID(console.log);
+getLCP(console.log);
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide section">
+        <div>
+            <h2>Отправка данных</h2>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Как отправлять?</h2>
+
+            <p>Собираем метрики по мере готовности</p>
+            <p class="next">Группируем в пачки и отправляем</p>
+            <p class="next">Чем больше задержка между событием и отправкой, тем больше вероятность, что данные мы не получим</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Что отправлять?</h2>
+
+            <ul>
+                <li class="next">Request Id</li>
+                <li class="next">Группировка показов</li>
+                <ul>
+                    <li class="next">Текущая страница</li>
+                    <li class="next">Платформа</li>
+                    <li class="next">A/B эксперименты</li>
+                    <li class="next">Версия релиза</li>
+                    <li class="next">Залогиновость</li>
+                    <li class="next">Что угодно ещё</li>
+                </ul>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide section">
+        <div>
+            <h2>Анализ данных</h2>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Функции для расчёта метрики: max</h2>
+
+            <p>max(10, <mark>20</mark>, 15) = 20</p>
+            <p class="next">max(10, <mark>90</mark>, 15) = 90</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Функции для расчёта метрики: min</h2>
+
+            <p>С одной стороны, ведёт себя похожим образом с max</p>
+            <p class="next">С другой стороны, является "минимумом" для всех пользователей</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Функции для расчёта метрики: avg</h2>
+
+            <p>avg(10, <mark>20</mark>, 15) = 15</p>
+            <p class="next">avg(10, <mark>90</mark>, 15) = 55</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Процентили</h2>
+
+            <style>
+                .side-by-side {
+                    display: flex;
+                    gap: 100px;
+                }
+
+                .slide pre .wrap-code {
+                    white-space: pre-wrap;
+                    margin: 0;
+                    width: 100%;
+                    padding: 0;
+                    font-size: 28px !important;
+                    line-height: 40px !important;
+                }
+            </style>
+
+            <div class="side-by-side">
+                <div class="language-js highlighter-rouge">
+                    <pre class="highlight">
+                        <code class="wrap-code">
+[121, 77, 127, 189, 133, 53, 94, 105, 150, 69, 111, 199, 122, 77, 223, 111, 85, 76, 171, 158, 91, 71, 52, 72, 232, 223, 135, 184, 52, 180, 261, 53, 139, 237, 284, 92, 261, 56, 69, 55, 62, 196, 94, 187, 214, 164, 308, 174, 111, 59, 87, 55, 93, 177, 200, 66, 251, 124, 202, 208, 67, 92, 259, 203, 72, 56, 211, 50, 145, 50, 156, 373, 131, 74, 83, 199, 94, 59, 156, 145, 214, 55, 106, 197, 140, 218, 144, 60, 119, 114, 136, 146, 308, 91, 281, 99, 183, 52, 68, 336]
+                        </code>
+                    </pre>
+                </div>
+                <div class="language-js highlighter-rouge next">
+                    <pre class="highlight">
+                        <code class="wrap-code">
+[50, 50, 52, 52, 52, 53, 53, 55, 55, 55, 56, 56, 59, 59, 60, 62, 66, 67, 68, 69, 69, 71, 72, 72, 74, 76, 77, 77, 83, 85, 87, 91, 91, 92, 92, 93, 94, 94, 94, 99, 105, 106, 111, 111, 111, 114, 119, 121, 122, 124, 127, 131, 133, 135, 136, 139, 140, 144, 145, 145, 146, 150, 156, 156, 158, 164, 171, 174, 177, 180, 183, 184, 187, 189, 196, 197, 199, 199, 200, 202, 203, 208, 211, 214, 214, 218, 223, 223, 232, 237, 251, 259, 261, 261, 281, 284, 308, 308, 336, 373]
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <p style="text-align: center">sort()</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Процентили</h2>
+
+            <style>
+                .median {
+                    color: #219124;
+                    font-weight: bold;
+                    text-decoration: underline;
+                }
+            </style>
+
+            <div class="side-by-side">
+                <div class="language-js highlighter-rouge">
+                    <pre class="highlight">
+                        <code class="wrap-code">
+[121, 77, 127, 189, 133, 53, 94, 105, 150, 69, 111, 199, 122, 77, 223, 111, 85, 76, 171, 158, 91, 71, 52, 72, 232, 223, 135, 184, 52, 180, 261, 53, 139, 237, 284, 92, 261, 56, 69, 55, 62, 196, 94, 187, 214, 164, 308, 174, 111, 59, 87, 55, 93, 177, 200, 66, 251, 124, 202, 208, 67, 92, 259, 203, 72, 56, 211, 50, 145, 50, 156, 373, 131, 74, 83, 199, 94, 59, 156, 145, 214, 55, 106, 197, 140, 218, 144, 60, 119, 114, 136, 146, 308, 91, 281, 99, 183, 52, 68, 336]
+                        </code>
+                    </pre>
+                </div>
+                <div class="language-js highlighter-rouge">
+                    <pre class="highlight">
+                        <code class="wrap-code">
+[50, 50, 52, 52, 52, 53, 53, 55, 55, 55, 56, 56, 59, 59, 60, 62, 66, 67, 68, 69, 69, 71, 72, 72, 74, 76, 77, 77, 83, 85, 87, 91, 91, 92, 92, 93, 94, 94, 94, 99, 105, 106, 111, 111, 111, 114, 119, 121, 122, 124, <span class="median">127</span>, 131, 133, 135, 136, 139, 140, 144, 145, 145, 146, 150, 156, 156, 158, 164, 171, 174, 177, 180, 183, 184, 187, 189, 196, 197, 199, 199, 200, 202, 203, 208, 211, 214, 214, 218, 223, 223, 232, 237, 251, 259, 261, 261, 281, 284, 308, 308, 336, 373]
+                        </code>
+                    </pre>
+                    <p class="median">50%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Процентили</h2>
+
+            <style>
+                .p25 {
+                    color: #0c53ed;
+                    font-weight: bold;
+                    text-decoration: underline;
+                }
+
+                .p75 {
+                    color: #f9d022;
+                    font-weight: bold;
+                    text-decoration: underline;
+                }
+
+                .p95 {
+                    color: #f84040;
+                    font-weight: bold;
+                    text-decoration: underline;
+                }
+            </style>
+
+            <div class="side-by-side">
+                <div class="language-js highlighter-rouge">
+                    <pre class="highlight">
+                        <code class="wrap-code">
+[121, 77, 127, 189, 133, 53, 94, 105, 150, 69, 111, 199, 122, 77, 223, 111, 85, 76, 171, 158, 91, 71, 52, 72, 232, 223, 135, 184, 52, 180, 261, 53, 139, 237, 284, 92, 261, 56, 69, 55, 62, 196, 94, 187, 214, 164, 308, 174, 111, 59, 87, 55, 93, 177, 200, 66, 251, 124, 202, 208, 67, 92, 259, 203, 72, 56, 211, 50, 145, 50, 156, 373, 131, 74, 83, 199, 94, 59, 156, 145, 214, 55, 106, 197, 140, 218, 144, 60, 119, 114, 136, 146, 308, 91, 281, 99, 183, 52, 68, 336]
+                        </code>
+                    </pre>
+                </div>
+                <div class="language-js highlighter-rouge">
+                    <pre class="highlight">
+                        <code class="wrap-code">
+[50, 50, 52, 52, 52, 53, 53, 55, 55, 55, 56, 56, 59, 59, 60, 62, 66, 67, 68, 69, 69, 71, 72, 72, 74, <span class="p25">76</span>, 77, 77, 83, 85, 87, 91, 91, 92, 92, 93, 94, 94, 94, 99, 105, 106, 111, 111, 111, 114, 119, 121, 122, 124, <span class="median">127</span>, 131, 133, 135, 136, 139, 140, 144, 145, 145, 146, 150, 156, 156, 158, 164, 171, 174, 177, 180, 183, 184, 187, 189, 196, <span class="p75">197</span>, 199, 199, 200, 202, 203, 208, 211, 214, 214, 218, 223, 223, 232, 237, 251, 259, 261, 261, 281, <span class="p95">284</span>, 308, 308, 336, 373]
+                        </code>
+                    </pre>
+                    <p><span class="p25">25%</span>, <span class="median">50%</span>, <span class="p75">75%</span>, <span class="p95">95%</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Процентили</h2>
+
+            <p>Фактически, max = 100й процентиль</p>
+            <p class="next">99 процентиль всё ещё даёт шумные данные, на него оказывают сильное влияние малое число пользователей</p>
+            <p class="next">Чаще всего оценивают 75й процентиль, но полезны и остальные</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Итого</h2>
+
+            <p><strong>Собираем метрики, в том числе важные для вашего сервиса</strong></p>
+            <p class="next"><strong>Получаем данные</strong></p>
+            <p class="next"><strong>Группируем данные по критериям</strong></p>
+            <p class="next"><strong>Используем процентили</strong></p>
+            <p class="next"><strong>Следим за скоростью вашего сайта и улучшаем её</strong></p>
+        </div>
+    </section>
+
+    <section class="slide contacts">
+        <div>
+            <h2>Контакты</h2>
+
+            <figure>
+                <h3 id="section">Александр Нефедов</h3>
+            </figure>
+
+            <!-- разделитель контактов -->
+            <hr>
+
+            <!-- left -->
+            <ul>
+                <li class="mail">4eb0da@yandex-team.ru</li>
+                <li class="github">4eb0da</li>
+            </ul>
+
+            <!--
+
+            - {:.mail}author@yandex-team.ru
+            - {:.phone}+7-999-888-7766
+            - {:.github}author
+            - {:.bitbucket}author
+            - {:.twitter}@author
+            - {:.telegram}author
+            - {:.skype}author
+            - {:.instagram}author
+            - {:.facebook}author
+            - {:.vk}@author
+            - {:.ok}@author
+
+            -->
+        </div>
+    </section>
+
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="-5" aria-valuetext="Slideshow Progress: -5%"></div>
+    <footer class="badge"><a href="https://github.yandex-team.ru/presentation/jekyller">Fork me on Github</a></footer>
+    <section role="region" aria-live="assertive" aria-relevant="additions" aria-label="Slide Content: Auto-updating" class="region"></section>
+    <script src="shower/shower.min.js"></script>
+</body>
+</html>
